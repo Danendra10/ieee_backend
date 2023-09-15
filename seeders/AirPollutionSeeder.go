@@ -15,6 +15,7 @@ var compounds []string = []string{
 	"NH3",
 	"NH4",
 	"O3",
+	"HAI",
 }
 
 var lat_lng [][]float64 = [][]float64{
@@ -55,7 +56,7 @@ func GenerateCreatedAt(day time.Time) time.Time {
 	return created_at
 }
 func SeedAirPolutions() error {
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 1000; i++ {
 		component := RandomizeCompounds(compounds)
 		lat, lng := RandomizeLatLng(lat_lng)
 
