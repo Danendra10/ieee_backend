@@ -26,6 +26,10 @@ func Connect() {
 
 	DB = database
 
+	err = DB.Migrator().DropTable(&models.AirPolution{})
+	if err != nil {
+		log.Fatal("Failed to drop column")
+	}
 	tables := []interface{}{
 		&models.AirPolution{},
 	}
