@@ -37,3 +37,27 @@ func GetAllData(c *fiber.Ctx) error {
 		"data":    get_data,
 	})
 }
+
+func CreateData(c *fiber.Ctx) error {
+	air_pollution_new_data := new(models.AirPolution)
+
+	if err := c.BodyParser(air_pollution_new_data); err != nil {
+		return err
+	}
+
+	db := database.DB
+
+	if err := db.Create(air_pollution_new_data).Error; err != nil {
+		return utils.JSONResponse(c, fiber.Map{
+			"code":    400,
+			"message": "Success",
+			"data":    err,
+		})
+	}
+
+	return utils.JSONResponse(c, fiber.Map{
+		"code":    200,
+		"message": "Success",
+		"data":    air_pollution_new_data,
+	})
+}
